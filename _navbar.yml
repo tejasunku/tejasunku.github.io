@@ -1,6 +1,6 @@
 name: "Personal Website"
 title: "Teja Sunku"
-type: inverse
+theme: theme.css
 left:
   - text: "About me"
     menu:
