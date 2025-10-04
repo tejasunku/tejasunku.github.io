@@ -25,7 +25,7 @@ A personal site that behaves like a **threshold** — non-linear navigation, sub
 corepack enable
 
 # 1) scaffold (if not already)
-pnpm create astro@latest
+pnpm create astro@latestc
 
 # 2) install deps
 pnpm i
