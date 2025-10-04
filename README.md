@@ -2,12 +2,16 @@
 
 A personal site that behaves like a **threshold** — non-linear navigation, subtle ephemerality, and room for future experiments.
 
+---
+
 ## Goals
 
 * **Markdown-first** content (fast to write).
 * **Zero-JS by default**; add tiny islands only when needed.
 * **Weird, path-dependent pages** (non-euclidean “rooms”).
 * **Cheap to run, easy to move** (no lock-in).
+
+---
 
 ## Stack
 
@@ -25,7 +29,7 @@ A personal site that behaves like a **threshold** — non-linear navigation, sub
 corepack enable
 
 # 1) scaffold (if not already)
-pnpm create astro@latestc
+pnpm create astro@latest
 
 # 2) install deps
 pnpm i
@@ -47,19 +51,19 @@ pnpm build
 ```
 .
 ├─ src/
-│  ├─ pages/                # /, /rooms/[slug]
-│  ├─ layouts/              # Room.astro, Base.astro
-│  ├─ components/           # (optional) interactive islands
+│  ├─ pages/        # /, /rooms/[slug]
+│  ├─ layouts/      # Room.astro, Base.astro
+│  ├─ components/   # (optional) interactive islands
 │  ├─ content/
-│  │  └─ rooms/             # markdown "rooms"
-│  └─ utils/                # seeded.ts (variant picker), helpers
-├─ public/                  # static assets
+│  │  └─ rooms/     # markdown "rooms"
+│  └─ utils/        # seeded.ts (variant picker), helpers
+├─ public/          # static assets
 ├─ docs/
-│  ├─ decisions/            # ADRs (architecture decision records)
-│  ├─ runbooks/             # "do X when it breaks"
-│  ├─ apis/                 # OpenAPI for any endpoints
-│  └─ routing.md            # single routing table (source of truth)
-├─ .github/                 # CI, PR templates
+│  ├─ decisions/    # ADRs (architecture decision records)
+│  ├─ runbooks/     # "do X when it breaks"
+│  ├─ apis/         # OpenAPI for any endpoints
+│  └─ routing.md    # single routing table (source of truth)
+├─ .github/         # CI, PR templates
 └─ README.md
 ```
 
@@ -67,10 +71,11 @@ pnpm build
 
 ## Content Model (Rooms)
 
-`src/content/config.ts`
+**`src/content/config.ts`**
 
 ```ts
 import { defineCollection, z } from "astro:content";
+
 export const collections = {
   rooms: defineCollection({
     type: "content",
@@ -79,14 +84,14 @@ export const collections = {
       exits: z.array(z.string()).default([]),
       variants: z.array(z.object({
         tone: z.enum(["gentle","neutral","sharp"]).default("neutral"),
-        line: z.string()
-      })).default([])
-    })
-  })
+        line: z.string(),
+      })).default([]),
+    }),
+  }),
 };
 ```
 
-**Create a room (example)**
+**Example room**
 
 ```md
 ---
@@ -101,55 +106,84 @@ Welcome, or something near it.
 
 ---
 
+## 🎨 Website Color Palette
+
+| Role                     | Hex Code  | Preview                                                                       |
+| ------------------------ | --------- | ----------------------------------------------------------------------------- |
+| **Primary**              | `#c36f09` | 🟧 Burnt amber / deep orange — strong brand anchor, buttons, highlights       |
+| **Secondary**            | `#296600` | 🟩 Earthy green — balances the warmth, good for secondary CTAs or links       |
+| **Accent 1**             | `#de5489` | 🩷 Vivid pink-rose — eye-catching accent for highlights, tags, small elements |
+| **Accent 2**             | `#562446` | 🟪 Plum / deep wine — rich supporting color for headers or overlays           |
+| **Background / Neutral** | `#ecedd4` | 🟨 Soft parchment beige — light, neutral background for readability           |
+
+### Suggested Usage
+
+* **Backgrounds:** `#ecedd4` keeps things clean and readable.
+* **Text:** Dark text (`#562446` or black) on parchment background.
+* **Primary buttons/links:** `#c36f09` (hover: deepen to `#a25908`).
+* **Secondary buttons/links:** `#296600` for emphasis without overwhelming.
+* **Highlights/tags/alerts:** `#de5489` sparingly, for quick attention.
+* **Headers/Accents:** `#562446` for a grounding, sophisticated feel.
+
+---
+
 ## Styling (UnoCSS)
 
-**astro.config.mjs**
+A **complete UnoCSS setup** with your palette fully wired in, semantic naming, and accessible defaults.
 
-```js
-import UnoCSS from 'unocss/astro';
-import { defineConfig } from 'astro/config';
-
-export default defineConfig({
-  integrations: [UnoCSS()]
-});
-```
-
-**uno.config.ts**
+**`uno.config.ts` (core theme)**
 
 ```ts
-import { defineConfig, presetWind, presetIcons, presetAttributify } from 'unocss';
+import { defineConfig, presetWind } from 'unocss'
 
 export default defineConfig({
-  presets: [presetWind(), presetIcons(), presetAttributify()],
-  shortcuts: {
-    // Example: soft vignette “veil” + light blur
-    'veil-mask': '[mask-image:radial-gradient(circle_at_60%_40%,black_28%,transparent_30%)] backdrop-blur-sm'
+  presets: [presetWind()],
+  theme: {
+    colors: {
+      primary: '#c36f09',
+      secondary: '#296600',
+      accent: '#de5489',
+      plum: '#562446',
+      neutral: '#ecedd4',
+
+      surface: {
+        DEFAULT: '#ecedd4',
+        alt: '#ffffff',
+        dark: '#562446',
+      },
+
+      text: {
+        DEFAULT: '#562446',
+        onPrimary: '#ffffff',
+        onSecondary: '#ffffff',
+        onAccent: '#ffffff',
+        onNeutral: '#562446',
+        onSurface: '#562446',
+        onSurfaceAlt: '#562446',
+        onSurfaceDark: '#ecedd4',
+      },
+    },
   },
-  rules: [
-    // e.g. mood-15 => subtle hue shift
-    [/^mood-(\d+)$/, ([, d]) => ({ filter: `hue-rotate(${d}deg) saturate(1.05)` })]
-  ]
-});
+})
 ```
 
-**Usage examples (in .astro / .mdx / .md via HTML):**
+**Usage examples**
 
 ```html
-<div class="prose mx-auto p-6 veil-mask mood-15">
-  <h1 class="text-3xl font-600 tracking-tight">The Atrium</h1>
-  <p class="opacity-85">You are here—unless you were.</p>
-</div>
-```
+<div class="bg-surface text-text p-6">Default surface</div>
+<div class="bg-surface-dark text-text-onSurfaceDark p-6">Dark surface</div>
 
-* `preset-wind` gives Tailwind-like utilities.
-* Use **arbitrary values** freely, e.g. `clip-path-[circle(42%_at_30%_50%)]`.
+<button class="bg-primary text-text-onPrimary px-4 py-2 rounded">Primary</button>
+<button class="bg-secondary text-text-onSecondary px-4 py-2 rounded">Secondary</button>
+<button class="bg-accent text-text-onAccent px-4 py-2 rounded">Accent</button>
+```
 
 ---
 
 ## “Weird” Without JS (CSS-only)
 
-* Use `:target`, `:focus-within`, and (optionally) hidden radios to create non-linear reveals.
-* Duplicate near-identical destinations with tiny differences → back/forward feels **non-euclidean**.
+* Use `:target`, `:focus-within`, or hidden radios for non-linear reveals.
+* Duplicate near-identical destinations with tiny differences → feels **non-euclidean**.
 * Keep a11y intact: focus outlines, escape hatches, contrast.
 
 ---
@@ -157,116 +191,37 @@ export default defineConfig({
 ## Ephemerality (Daily Variant Drift)
 
 At build time, pick a variant per page using a seed (date or env).
-
-`src/utils/seeded.ts`
+Example: `src/utils/seeded.ts`
 
 ```ts
 export default function seeded(s: string) {
-  let h = 2166136261 >>> 0;
+  let h = 2166136261 >>> 0
   for (let i = 0; i < s.length; i++) {
-    h ^= s.charCodeAt(i);
-    h = Math.imul(h, 16777619);
+    h ^= s.charCodeAt(i)
+    h = Math.imul(h, 16777619)
   }
-  return h >>> 0;
+  return h >>> 0
 }
 ```
-
-In layouts, use `process.env.SEED ?? new Date().toISOString().slice(0,10)` to choose a variant.
-
----
-
-## Optional GitHub Action (nightly rebuild)
-
-```yaml
-name: Nightly Ephemeral Build
-on:
-  schedule: [{ cron: "0 9 * * *" }]  # 09:00 UTC
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: pnpm
-      - run: corepack enable
-      - run: pnpm install --frozen-lockfile
-      - run: SEED=$(date -u +%F) pnpm build
-      - run: pnpm dlx wrangler pages deploy dist  # or your host's deploy cmd
-```
-
----
-
-## Edge Functions (Add Later)
-
-* **Per-user ephemerality:** set a seed cookie at the edge; choose among prebuilt variants.
-* Keep edge endpoints minimal: auth, rate-limit, streaming proxy for third-party APIs. No heavy compute.
-
----
-
-## Security Basics (minimums)
-
-* No secrets in the browser. Use edge/server proxies for APIs (LLM, storage).
-* Cookies (if used): `Secure`, `HttpOnly`, `SameSite=Lax/Strict`.
-* **CSP:** use a nonce-based CSP; avoid inline scripts unless nonced.
-* **CORS:** allow only your origins.
-* **CSRF:** if using cookie auth, add CSRF protection (framework/IdP middleware).
-* Rotate env secrets via CI; never commit them.
-
----
-
-## Environment Variables (examples)
-
-Create `.env` (and commit a `.env.production.example`):
-
-```
-SEED=2025-10-03
-# EDGE / API (later)
-OPENAI_API_KEY=...
-R2_ACCESS_KEY_ID=...
-R2_SECRET_ACCESS_KEY=...
-```
-
----
-
-## Docs as Code (keep it tiny but alive)
-
-* `docs/decisions/` — ADRs (one file per big choice: Astro, **UnoCSS**, host, edge).
-* `docs/routing.md` — single table:
-
-| Host                                      | Path     | Handler           | Notes               |
-| ----------------------------------------- | -------- | ----------------- | ------------------- |
-| [www.example.com](http://www.example.com) | /        | Astro (static)    | veil                |
-| [www.example.com](http://www.example.com) | /rooms/* | Astro (static)    | rooms from markdown |
-| [www.example.com](http://www.example.com) | /api/*   | (later) Edge func | streaming proxy     |
-
-* `docs/runbooks/` — brief “what to do when it breaks.”
-* `docs/apis/` — OpenAPI for any endpoints you own.
-
-**PR checklist** (`.github/pull_request_template.md`)
-
-* [ ] Updated `docs/routing.md` if paths/hosts changed
-* [ ] Added ADR for new services/stack choices
-* [ ] Updated OpenAPI if API behavior changed
 
 ---
 
 ## Deploy
 
-* **Start:** any static host (Cloudflare Pages / Netlify / Vercel / GitHub Pages).
-* **Grow:** add an edge function (Cloudflare Pages Functions) for per-user seeds or tiny APIs.
-* **Escape hatch:** one small container/VM later for long jobs.
+* **Start:** any static host (Cloudflare Pages, Netlify, Vercel, GitHub Pages).
+* **Grow:** add edge functions for per-user seeds or small APIs.
+* **Escape hatch:** a container/VM later for long jobs.
 
 ---
 
 ## FAQ
 
 **Why UnoCSS?**
-Maximum customizability, instant atomic utilities, Tailwind-like syntax via `preset-wind`, and effortless arbitrary values — perfect for “weird,” path-dependent styling with minimal JS.
+Customizable, atomic utilities, Tailwind-like syntax, and effortless arbitrary values. Perfect for “weird,” path-dependent styling with minimal JS.
 
 **Where’s the JS?**
 Astro ships none by default. Add islands with `client:*` only where interaction matters.
 
-**How do I make it “feel alive”?**
-Daily `SEED` + (later) per-user seed at the edge + tiny content/visual variants per room.
+**How do I make it feel alive?**
+Daily `SEED` + (later) per-user seeds at the edge + tiny content/visual variants per room.
+
