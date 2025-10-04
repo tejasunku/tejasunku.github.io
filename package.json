@@ -1,0 +1,22 @@
+{
+  "name": "threshold",
+  "type": "module",
+  "version": "0.0.1",
+  "packageManager": "pnpm@10.18.0",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^5.0.0",
+    "unocss": "^66.0.0"
+  },
+  "devDependencies": {
+    "@unocss/preset-attributify": "^66.0.0",
+    "@unocss/preset-icons": "^66.0.0",
+    "@unocss/preset-wind": "^66.0.0"
+  }
+}

@@ -1,0 +1,17 @@
+---
+// Dynamic page for rooms
+export async function getStaticPaths() {
+	const posts = await getCollection('rooms');
+	return posts.map(post => ({
+		params: { slug: post.slug },
+		props: { post },
+	}));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+---
+
+<Room title={post.data.title}>
+	<Content />
+</Room>
