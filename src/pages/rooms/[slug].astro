@@ -1,5 +1,7 @@
 ---
 // Dynamic page for rooms
+import { getCollection } from 'astro:content';
+import Room from '../../layouts/Room.astro';
 export async function getStaticPaths() {
 	const posts = await getCollection('rooms');
 	return posts.map(post => ({
