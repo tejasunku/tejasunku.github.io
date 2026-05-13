@@ -5,18 +5,21 @@
 - **Vite** - Build tool with Cloudflare Vite plugin
 - **Cloudflare Workers** - Backend API
 - **TypeScript** - Throughout
+- **UnoCSS** - Atomic CSS engine (configured in `uno.config.ts`)
+- **IndieWeb** - Standards for personal websites (h-entry, Webmention, IndieAuth, Micropub)
 
 ## Project Structure
 
 ```
-src/                  → React SPA (Vite builds to dist/)
+src/
   App.tsx             → Main React app
   main.tsx            → Entry point
   routes/             → React Router pages
   components/         → Reusable components
 worker/
   index.ts            → Worker API (fetch handler)
-vite.config.ts        → Vite + Cloudflare plugin config
+uno.config.ts         → UnoCSS configuration
+vite.config.ts        → Vite + Cloudflare + UnoCSS config
 wrangler.toml         → Worker configuration
 ```
 
@@ -57,6 +60,24 @@ Use idpflare-client in the Worker API for OAuth/OIDC flows.
 - Use standard Web APIs only (no nodejs_compat needed)
 - Wrangler handles TypeScript compilation for the Worker
 - Vite handles JSX/TypeScript for the React SPA
+
+## UnoCSS
+
+ UnoCSS is configured via `uno.config.ts` with presetUno and presetWebFonts.
+ Shortcuts are defined for common patterns (btn, btn-primary, btn-ghost).
+ Import in entry point: `import "virtual:uno.css"` or use Vite plugin auto-import.
+
+## IndieWeb Standards
+
+Personal website content should follow IndieWeb standards:
+
+- **h-entry** - Mark up blog posts, notes, articles with h-entry microformat
+- **h-card** - Author/profile markup on pages
+- **Webmention** - Enable receiving Webmentions for comments/likes
+- **IndieAuth** - Allow login via your own URL (rel-me auth)
+- **Micropub** - Support post creation via Micropub API
+
+See `.claude/skills/indieweb/` for detailed implementation reference.
 
 ## Documentation Order
 

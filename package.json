@@ -13,7 +13,9 @@
     "@cloudflare/vite-plugin": "^1.0.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
+    "@unocss/reset": "^66.6.8",
     "typescript": "^5.9.3",
+    "unocss": "^66.6.8",
     "vite": "^7.2.6"
   },
   "dependencies": {
