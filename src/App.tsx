@@ -32,7 +32,7 @@ function About() {
     <main style={{ padding: "2rem", maxWidth: "600px" }}>
       <h1>About</h1>
       <p>
-        Hi, I'm <strong>Teja Sunkara</strong>, owner of <strong>Kube Era LLC</strong>.
+        Hi, I'm <strong>Teja Sunku</strong>, owner of <strong>Kube Era LLC</strong>.
         I build software solutions designed to improve people's digital lives.
       </p>
       <p>
