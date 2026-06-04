@@ -4,6 +4,7 @@ const navItems = [
   { to: "/", label: "About" },
   { to: "/blog", label: "Blog" },
   { to: "/products", label: "Products" },
+  { to: "/tos", label: "ToS" },
 ];
 
 function Navbar() {
@@ -75,6 +76,86 @@ function Products() {
   );
 }
 
+function TermsOfService() {
+  return (
+    <main style={{ padding: "2rem", maxWidth: "700px" }}>
+      <h1>Terms of Service — tejasunku.com</h1>
+      <p><em>Effective Date: June 4, 2026 | Last Updated: June 4, 2026</em></p>
+      <p>
+        These Terms of Service ("Terms") govern your use of the website tejasunku.com (the "Site"), operated by Kube Era LLC ("Company," "we," "us," or "our"). By accessing or using the Site, you agree to be bound by these Terms.
+      </p>
+
+      <h2>1. Overview</h2>
+      <p>
+        tejasunku.com serves as a centralized authentication portal for services provided by Kube Era LLC. The Site itself does not provide any paid services. It exists solely to manage user accounts and login credentials that enable access to our various services.
+      </p>
+
+      <h2>2. Account Registration</h2>
+      <p>
+        To use services provided by Kube Era LLC, you may create an account on tejasunku.com. You may also authenticate using a third-party OAuth provider (e.g., Google, GitHub). By registering, you agree to provide accurate information and to keep your credentials secure.
+      </p>
+
+      <h2>3. Scope of Access</h2>
+      <p>
+        An account on tejasunku.com grants limited access to Kube Era LLC services. Each service has its own Terms of Service and Privacy Policy that govern your use of that specific service. These base Terms apply to all services unless explicitly overridden by a service's own Terms, in which case the service-specific Terms take precedence for that service. Base Terms remain in full force and effect for any matter not explicitly overridden.
+      </p>
+
+      <h2>4. Data Collection and Storage</h2>
+      <p>
+        tejasunku.com collects and stores only the minimum data necessary to manage your account and authentication. This includes your email address, authentication credentials, and basic profile information. We do not store any additional personal data beyond what is required for login management.
+      </p>
+
+      <h2>5. Account Deletion</h2>
+      <p>
+        You may delete your account at any time. Upon deletion:
+      </p>
+      <ul>
+        <li>Your account data on tejasunku.com will be permanently removed.</li>
+        <li><strong>Your account deletion may irrevocably delete data associated with any Kube Era LLC services you have used. This deletion is permanent and there is no recourse for recovery.</strong> The specific consequences of deletion depend on the individual service and are governed by that service's Terms of Service.</li>
+      </ul>
+
+      <h2>6. Third-Party OAuth Providers</h2>
+      <p>
+        If you choose to authenticate using a third-party OAuth provider, certain information will be shared with that provider in accordance with their terms and privacy policies. We do not control the data practices of third-party OAuth providers. We do not share your information with any other third parties.
+      </p>
+
+      <h2>7. No Warranties; Limitation of Liability</h2>
+      <p>
+        <strong>THE SITE IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED.</strong>
+      </p>
+      <p>
+        <strong>TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, KUBE ERA LLC SHALL NOT BE LIABLE FOR ANY DAMAGES ARISING FROM YOUR USE OF THE SITE. OUR TOTAL LIABILITY IS LIMITED TO THE MAXIMUM EXTENT PERMITTED BY LAW.</strong>
+      </p>
+      <p>
+        Because the Site is provided free of charge, Kube Era LLC disclaims all liability to the fullest extent permitted by applicable law.
+      </p>
+
+      <h2>8. Indemnification</h2>
+      <p>
+        You agree to indemnify and hold harmless Kube Era LLC, its officers, directors, employees, and agents from any claims, losses, damages, liabilities, and expenses arising out of your use of the Site or violation of these Terms.
+      </p>
+
+      <h2>9. Changes to These Terms</h2>
+      <p>
+        We reserve the right to modify these Terms at any time. We will notify you of material changes by posting the updated Terms on the Site. Your continued use of the Site after changes are posted constitutes acceptance of the revised Terms.
+      </p>
+
+      <h2>10. Governing Law</h2>
+      <p>
+        These Terms are governed by the laws of the State of Delaware, United States, without regard to its conflict of law principles.
+      </p>
+
+      <h2>11. Contact</h2>
+      <p>If you have questions about these Terms, contact us at:</p>
+      <p>
+        <strong>Kube Era LLC</strong><br />
+        Email: <a href="mailto:sunkut@outlook.com">sunkut@outlook.com</a><br />
+        Website: tejasunku.com
+      </p>
+    </main>
+  );
+}
+
 function Layout() {
   return (
     <>
@@ -92,6 +173,7 @@ export default function App() {
         <Route path="/" element={<About />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/products" element={<Products />} />
+        <Route path="/tos" element={<TermsOfService />} />
       </Routes>
     </BrowserRouter>
   );
