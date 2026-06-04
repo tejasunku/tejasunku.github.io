@@ -5,6 +5,7 @@ const navItems = [
   { to: "/blog", label: "Blog" },
   { to: "/products", label: "Products" },
   { to: "/tos", label: "ToS" },
+  { to: "/privacy", label: "Privacy" },
 ];
 
 function Navbar() {
@@ -156,6 +157,93 @@ function TermsOfService() {
   );
 }
 
+function PrivacyPolicy() {
+  return (
+    <main style={{ padding: "2rem", maxWidth: "700px" }}>
+      <h1>Privacy Policy — tejasunku.com</h1>
+      <p><em>Effective Date: June 4, 2026 | Last Updated: June 4, 2026</em></p>
+      <p>
+        This Privacy Policy describes how Kube Era LLC ("Company," "we," "us," or "our") collects, uses, and protects your information when you use tejasunku.com (the "Site").
+      </p>
+
+      <h2>1. Overview</h2>
+      <p>
+        tejasunku.com is a centralized authentication portal operated by Kube Era LLC. The Site exists solely to manage user accounts and login credentials for Kube Era LLC services. We collect and store only the minimum data necessary to fulfill this purpose.
+      </p>
+
+      <h2>2. Information We Collect</h2>
+      <p>We collect the following information when you create an account:</p>
+      <ul>
+        <li><strong>Email address</strong> — used for account identification and communication</li>
+        <li><strong>Authentication credentials</strong> — securely hashed passwords or OAuth tokens</li>
+        <li><strong>Basic profile information</strong> — such as your name, if provided</li>
+      </ul>
+      <p>
+        If you choose to authenticate via a third-party OAuth provider, we receive only the information that provider shares as part of the authentication process (typically your email address and profile information).
+      </p>
+
+      <h2>3. How We Use Your Information</h2>
+      <p>We use your information exclusively for:</p>
+      <ul>
+        <li>Managing your account and authentication</li>
+        <li>Enabling login access to Kube Era LLC services</li>
+        <li>Communicating with you about your account</li>
+      </ul>
+
+      <h2>4. Information Sharing</h2>
+      <p>
+        We do not sell, rent, or share your personal information with any third parties, <strong>except</strong>:
+      </p>
+      <ul>
+        <li>
+          <strong>Third-party OAuth providers</strong> — if you choose to authenticate using an OAuth provider (e.g., Google, GitHub), certain information is shared with that provider as part of the authentication flow. This sharing is initiated by your choice to use that authentication method. We have no control over the data practices of these providers.
+        </li>
+      </ul>
+
+      <h2>5. Data Retention</h2>
+      <p>
+        We retain your account data for as long as your account remains active. You may delete your account at any time (see Section 6).
+      </p>
+
+      <h2>6. Account Deletion and Data Removal</h2>
+      <p>You may delete your account at any time through the Site. Upon deletion:</p>
+      <ul>
+        <li>All data stored by tejasunku.com related to your account will be permanently deleted.</li>
+        <li><strong>Account deletion may irrevocably delete data associated with Kube Era LLC services you have used.</strong> The specific data affected depends on the individual service. Refer to each service's Privacy Policy for details.</li>
+        <li>Deletion is permanent and cannot be undone.</li>
+      </ul>
+
+      <h2>7. Data Security</h2>
+      <p>
+        We implement reasonable security measures to protect your data. However, no method of transmission or storage is 100% secure, and we cannot guarantee absolute security.
+      </p>
+
+      <h2>8. Children's Privacy</h2>
+      <p>
+        The Site is not intended for use by individuals under the age of 13 (or the applicable age of consent in your jurisdiction). We do not knowingly collect information from children.
+      </p>
+
+      <h2>9. Changes to This Policy</h2>
+      <p>
+        We may update this Privacy Policy from time to time. We will post the updated policy on the Site with a revised "Last Updated" date. Your continued use of the Site after changes are posted constitutes acceptance of the revised policy.
+      </p>
+
+      <h2>10. Your Rights</h2>
+      <p>
+        Depending on your jurisdiction, you may have rights regarding your personal data, including the right to access, correct, or delete your information. To exercise these rights, contact us at the email below.
+      </p>
+
+      <h2>11. Contact</h2>
+      <p>If you have questions about this Privacy Policy, contact us at:</p>
+      <p>
+        <strong>Kube Era LLC</strong><br />
+        Email: <a href="mailto:sunkut@outlook.com">sunkut@outlook.com</a><br />
+        Website: tejasunku.com
+      </p>
+    </main>
+  );
+}
+
 function Layout() {
   return (
     <>
@@ -174,6 +262,7 @@ export default function App() {
         <Route path="/blog" element={<Blog />} />
         <Route path="/products" element={<Products />} />
         <Route path="/tos" element={<TermsOfService />} />
+        <Route path="/privacy" element={<PrivacyPolicy />} />
       </Routes>
     </BrowserRouter>
   );
