@@ -1,4 +1,4 @@
-name = "tejasunku"
+name = "threshold"
 compatibility_date = "2026-05-13"
 main = "worker/index.ts"
 
