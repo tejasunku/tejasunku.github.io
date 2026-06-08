@@ -38,6 +38,18 @@ function About() {
         I build software solutions designed to improve people's digital lives.
       </p>
       <p>
+        This website is your central hub for all projects distributed under Kube Era LLC.
+        Any login you create here grants you access to all gated services across the domain.
+      </p>
+      <p>
+        I sell individual services like{" "}
+        <a href="https://cleanupmyemail.tejasunku.com">Clean Up My Email</a> — my first service
+        designed to help people organize and clean up their email inbox.
+      </p>
+      <p>
+        Check out the <Link to="/products">Projects</Link> page to see all available services.
+      </p>
+      <p>
         Have questions about my products or need support? Reach out at{" "}
         <a href="mailto:sunkut@outlook.com">sunkut@outlook.com</a>.
       </p>
