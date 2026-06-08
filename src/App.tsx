@@ -50,6 +50,9 @@ function About() {
         Check out the <Link to="/products">Projects</Link> page to see all available services.
       </p>
       <p>
+        View our <Link to="/privacy">Privacy Policy</Link> and <Link to="/tos">Terms of Service</Link>.
+      </p>
+      <p>
         Have questions about my products or need support? Reach out at{" "}
         <a href="mailto:sunkut@outlook.com">sunkut@outlook.com</a>.
       </p>
@@ -163,7 +166,10 @@ function TermsOfService() {
       <p>
         <strong>Kube Era LLC</strong><br />
         Email: <a href="mailto:sunkut@outlook.com">sunkut@outlook.com</a><br />
-        Website: tejasunku.com
+        Website: <a href="https://tejasunku.com">tejasunku.com</a>
+      </p>
+      <p>
+        <Link to="/">Back to Home</Link> | <Link to="/privacy">Privacy Policy</Link>
       </p>
     </main>
   );
@@ -250,7 +256,10 @@ function PrivacyPolicy() {
       <p>
         <strong>Kube Era LLC</strong><br />
         Email: <a href="mailto:sunkut@outlook.com">sunkut@outlook.com</a><br />
-        Website: tejasunku.com
+        Website: <a href="https://tejasunku.com">tejasunku.com</a>
+      </p>
+      <p>
+        <Link to="/">Back to Home</Link> | <Link to="/tos">Terms of Service</Link>
       </p>
     </main>
   );
